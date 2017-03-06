@@ -744,7 +744,7 @@ x:-o-prefocus, .lb-overlay img {
   display: block;
   line-height: 2em;
 }
-.account-top input[type="text"], .account-top input[type="password"] {
+.account-top input[type="text"], .account-top input[type="password"],.account-top input[type="email"] {
   padding: 0.7em;
   width: 85%;
   background: none;
