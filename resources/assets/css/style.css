@@ -11,7 +11,7 @@ p {margin: 0;}
 html, body{
    font-family: 'PT Sans Narrow', sans-serif;
    font-size: 100%;
-   background:#fff; 
+   background:#fff !important;
 }
 body a{
 	transition:0.5s all;
@@ -290,6 +290,9 @@ ul.header_user_info li.user_desc{
 	float: left;
 	margin-top:6px;
 }
+li.user_desc a{
+	margin-left:5px;
+}
 .search-box {
 	position: relative;
 }
@@ -469,7 +472,7 @@ ul.content-home li .item-html {
   position: absolute;
   left: 30px;
   top: 20px;
-  width: 50%;
+  width: 60%;
   font-size: 15px;
   font-weight: 300;
   line-height: 24px;
