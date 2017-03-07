@@ -7,3 +7,45 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.mg-lft-10{
+  margin-left: 10px ;
+}
+.mg-top-20{
+  margin-top: 20px;
+}
+.fs-30{
+  font-size: 30px;
+}
+
+#log-in-form{
+  margin: auto;
+
+  .form-control{
+    width: 60%;
+  }
+  .alert{
+    width: 60%;
+  }
+}
+.flt-left{
+  float: left;
+}
+.flt-right{
+  float: right;
+}
+
+.title{
+  padding: 15px;
+}
+
+.tbl-cel{
+  max-width: 150px;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis ;
+}
+
+.clear-both{
+  clear:both;
+}

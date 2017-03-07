@@ -15,7 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'role_id',
+        'is_active'
     ];
 
     /**
@@ -26,4 +31,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getFullName(){
+        return $this->first_name.' '.$this->last_name;
+    }
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
 }
