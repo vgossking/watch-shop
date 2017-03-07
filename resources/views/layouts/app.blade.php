@@ -53,7 +53,7 @@
 
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
-                    <i class="fa fa-user fa-fw"></i> {{Auth::user()->name}} <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> {{Auth::user()->first_name}} <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -99,10 +99,10 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('users.index')}}">All User</a>
+                                <a href="">All User</a>
                             </li>
                             <li>
-                                <a href="{{route('users.create')}}">Create User</a>
+                                <a href="">Create User</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -111,10 +111,10 @@
                         <a href="#"><i class="fa fa-pencil-square-o  fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{route('posts.index')}}">All Posts</a>
+                                <a href="">All Posts</a>
                             </li>
                             <li>
-                                <a href="{{route('posts.create')}}">Add Posts</a>
+                                <a href="">Add Posts</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
