@@ -99,10 +99,10 @@
                         <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="">All User</a>
+                                <a href="{{url(route('users.index'))}}">All User</a>
                             </li>
                             <li>
-                                <a href="">Create User</a>
+                                <a href="{{url(route('users.create'))}}">Create User</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
