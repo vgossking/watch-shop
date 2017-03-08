@@ -44,7 +44,15 @@ class AdminWatchController extends Controller
     public function store(Request $request)
     {
         //
-        return $request->all();
+        $watchCategories = $request->categories;
+        if($request->discount_price == ""){
+            $watchData = $request->except(['discount_price', 'categories']);
+        }else{
+            $watchData = $request->except('categories');
+        }
+        $watch = Watch::create($watchData);
+        $watch->categories()->sync($watchCategories);
+        return redirect(route('watches.index'));
     }
 
     /**

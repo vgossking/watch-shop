@@ -16,6 +16,7 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Discount Price</th>
+            <th>Categories</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -28,7 +29,13 @@
                 <td>{{$watch->quantity? $watch->quantity : 'No Information'}}</td>
                 <td>{{$watch->price? $watch->price : 'No Information'}}</td>
                 <td>{{$watch->discount_price? $watch->discount_price : 'Not Discount'}}</td>
+                <td>
+                    @foreach($watch->categories as $category)
+                        {{$category->name}},
+                    @endforeach
+                </td>
                 <td>{{$watch->isAvailable() ? 'Available': 'Not Available'}}</td>
+
                 <td><a href="{{url(route('watches.edit', $watch->id))}}" class="btn btn-primary">Update</a></td>
                 <td>
                     <button class="btn btn-danger btn-delete">Delete</button>

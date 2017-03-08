@@ -10,6 +10,6 @@ class Category extends Model
     protected $fillable= ['name'];
 
     public function watches(){
-        return $this->belongsToMany('App\Watch');
+        return $this->belongsToMany('App\Watch','categories_watches');
     }
 }

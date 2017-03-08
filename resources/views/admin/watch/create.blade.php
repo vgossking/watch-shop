@@ -9,8 +9,8 @@
 
             <div class="container">
                 <div class="form-group col-md-6">
-                    {!!  Form::label('first_name', 'Name: ') !!}
-                    {!!  Form::text('first_name', null, ['class' => 'form-control']) !!}
+                    {!!  Form::label('name', 'Name: ') !!}
+                    {!!  Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group col-md-6">

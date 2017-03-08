@@ -43,6 +43,6 @@ class Watch extends Model
     }
 
     public function categories(){
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Category','categories_watches');
     }
 }
