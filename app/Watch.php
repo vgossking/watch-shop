@@ -41,4 +41,8 @@ class Watch extends Model
     public function getBandMaterialAttribute($material){
         return ucfirst($material);
     }
+
+    public function categories(){
+        return $this->belongsToMany('App\Category');
+    }
 }

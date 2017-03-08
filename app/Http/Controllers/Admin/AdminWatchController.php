@@ -44,7 +44,7 @@ class AdminWatchController extends Controller
     public function store(Request $request)
     {
         //
-        return $request->categories;
+        return $request->all();
     }
 
     /**

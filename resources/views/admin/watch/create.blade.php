@@ -55,16 +55,17 @@
                 </div>
 
             </div>
-
+            <h3 class="mg-lft-30">Categories: </h3>
             @foreach($categories as $category)
-                <div class="checkbox mg-lft-30">
-                    <label>
+
+                    <label class="checkbox-inline mg-lft-30 mg-btm-20">
                         {!! Form::checkbox('categories[]', $category->id ) !!}
                         {{$category->name}}
                     </label>
-                </div>
+
 
             @endforeach
+            <br>
             {!! Form::submit('Add User', ['class'=>'btn btn-success clear-both mg-lft-30']) !!}
 
 
