@@ -111,10 +111,10 @@
                         <a href="#"><i class="fa fa-pencil-square-o  fa-fw"></i> Watches<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="">All Watches</a>
+                                <a href="{{url(route('watches.index'))}}">All Watches</a>
                             </li>
                             <li>
-                                <a href="">Add Watches</a>
+                                <a href="{{url(route('watches.create'))}}">Add Watches</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
