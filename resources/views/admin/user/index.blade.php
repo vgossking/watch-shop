@@ -24,12 +24,13 @@
         @foreach($users as $user)
             <tr id = "user-{{$user->id}}">
                 <td class="user-id">{{$user->id}}</td>
-                <td><a href="">{{$user->getFullName()}}</a></td>
+                <td>{{$user->getFullName()}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role ? $user->role->name : 'No role'}}</td>
                 <td>{{$user->is_active? 'Active': 'Not Active'}}</td>
                 <td>{{$user->created_at ? $user->created_at->diffForHumans(): "Do not have info"}}</td>
                 <td>{{$user->updated_at ? $user->updated_at->diffForHumans(): "Do not have info"}}</td>
+                <td><a href="{{url(route('users.edit', $user->id))}}" class="btn btn-primary">Update</a></td>
                 <td><button class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
         @endforeach

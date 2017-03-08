@@ -17,12 +17,12 @@ class CreateWatchesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('shape')->nullable();
-            $table->string('size')->nullable();
+            $table->integer('size')->nullable();
             $table->string('bezel_material')->nullable();
             $table->string('band_material')->nullable();
             $table->integer('quantity')->nullable();
             $table->float('price');
-            $table->float('discount_price');
+            $table->float('discount_price')->nullable();
             $table->integer('brand_id')->nullable();
             $table->timestamps();
         });

@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\AdminUserRequest;
-use App\Role;
-use App\User;
+use App\Watch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
 
-class AdminUserController extends Controller
+class AdminWatchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +16,8 @@ class AdminUserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
-        return view('admin.user.index', compact('users'));
+        $watches = Watch::all();
+        return view('admin.watch.index', compact('watches'));
     }
 
     /**
@@ -31,8 +28,6 @@ class AdminUserController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name', 'id');
-        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -41,13 +36,9 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminUserRequest $request)
+    public function store(Request $request)
     {
         //
-        $userData = $request->all();
-        $userData['password'] = bcrypt($userData['password']);
-        User::create($userData);
-        return redirect(route('users.index'));
     }
 
     /**
@@ -70,9 +61,6 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'id');
-        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -82,17 +70,9 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        $userData = $request->all();
-        $userData['password'] = bcrypt($userData['password']);
-        if($request->password == ''){
-            $userData = $request->except('password');
-        }
-        $user = User::findOrFail($id);
-        $user->update($userData);
-        return redirect(route('users.index'));
     }
 
     /**
@@ -104,7 +84,5 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::destroy($id);
-        return Response::json($user);
     }
 }
