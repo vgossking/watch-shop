@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Brand;
+use App\Category;
 use App\Watch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,6 +30,9 @@ class AdminWatchController extends Controller
     public function create()
     {
         //
+        $brands = Brand::pluck('name', 'id');
+        $categories = Category::all();
+        return view('admin.watch.create', compact('brands', 'categories'));
     }
 
     /**
@@ -39,6 +44,7 @@ class AdminWatchController extends Controller
     public function store(Request $request)
     {
         //
+        return $request->categories;
     }
 
     /**
