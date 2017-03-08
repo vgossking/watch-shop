@@ -108,13 +108,13 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-pencil-square-o  fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-pencil-square-o  fa-fw"></i> Watches<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="">All Posts</a>
+                                <a href="">All Watches</a>
                             </li>
                             <li>
-                                <a href="">Add Posts</a>
+                                <a href="">Add Watches</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

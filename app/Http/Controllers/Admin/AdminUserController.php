@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AdminUserRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class AdminUserController extends Controller
 {
@@ -28,6 +31,8 @@ class AdminUserController extends Controller
     public function create()
     {
         //
+        $roles = Role::pluck('name', 'id');
+        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -36,9 +41,12 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminUserRequest $request)
     {
         //
+        $request->pasword = bcrypt($request->password);
+        User::create($request->all());
+        return redirect(route('users.index'));
     }
 
     /**
@@ -61,6 +69,9 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name', 'id');
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -70,9 +81,17 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUserRequest $request, $id)
     {
         //
+        $userData = $request->all();
+        $userData['password'] = bcrypt($userData['password']);
+        if($request->password == ''){
+            $userData = $request->except('password');
+        }
+        $user = User::findOrFail($id);
+        $user->update($userData);
+        return redirect(route('users.index'));
     }
 
     /**
@@ -84,5 +103,7 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::destroy($id);
+        return Response::json($user);
     }
 }
