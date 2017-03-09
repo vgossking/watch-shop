@@ -44,8 +44,7 @@ class AdminUserController extends Controller
     public function store(AdminUserRequest $request)
     {
         //
-        $userData = $request->all();
-        $userData['password'] = bcrypt($userData['password']);
+        $userData = $this->handleRequest($request);
         User::create($userData);
         return redirect(route('users.index'));
     }
@@ -85,11 +84,7 @@ class AdminUserController extends Controller
     public function update(AdminUserRequest $request, $id)
     {
         //
-        $userData = $request->all();
-        $userData['password'] = bcrypt($userData['password']);
-        if($request->password == ''){
-            $userData = $request->except('password');
-        }
+        $userData = $this->handleRequest($request);
         $user = User::findOrFail($id);
         $user->update($userData);
         return redirect(route('users.index'));
@@ -106,5 +101,14 @@ class AdminUserController extends Controller
         //
         $user = User::destroy($id);
         return Response::json($user);
+    }
+
+    private function handleRequest(AdminUserRequest $request){
+        $userRequest = $request->all();
+        $userRequest['password'] = bcrypt($userRequest['password']);
+        if($userRequest['password'] == ''){
+            $userRequest = $request->except('password');
+        }
+        return $userRequest;
     }
 }

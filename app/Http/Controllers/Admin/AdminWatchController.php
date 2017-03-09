@@ -48,8 +48,6 @@ class AdminWatchController extends Controller
         //
         $watchData = $this->handleRequest($request);
         $watchCategories = $request->categories;
-
-
         $watch = Watch::create($watchData);
         if($watchCategories){
             $watch->categories()->sync($watchCategories);
@@ -104,8 +102,6 @@ class AdminWatchController extends Controller
         }
 
         $watchData = $this->handleRequest($request);
-
-
         $watch->update($watchData);
 
         return redirect(route('watches.index'));
