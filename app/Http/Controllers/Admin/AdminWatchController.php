@@ -46,8 +46,7 @@ class AdminWatchController extends Controller
     public function store(AdminWatchRequest $request)
     {
         //
-        $watchData = $request->all();
-        $watchData = $this->setBlankData($watchData);
+        $watchData = $this->handleRequest($request);
         $watchCategories = $request->categories;
 
 
@@ -104,9 +103,7 @@ class AdminWatchController extends Controller
             $watch->categories()->detach();
         }
 
-        $watchData = $request->all();
-
-        $watchData = $this->setBlankData($watchData);
+        $watchData = $this->handleRequest($request);
 
 
         $watch->update($watchData);
@@ -125,6 +122,10 @@ class AdminWatchController extends Controller
         //
         $watch = Watch::destroy($id);
         return Response::json($watch);
+    }
+
+    private function handleRequest(AdminWatchRequest $request){
+        return $this->setBlankData($request->all());
     }
 
     private function setBlankData($data){
