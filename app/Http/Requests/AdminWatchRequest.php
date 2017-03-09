@@ -26,7 +26,8 @@ class AdminWatchRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'quantity' => 'required'
         ];
     }
 }

@@ -46,14 +46,13 @@ class AdminWatchController extends Controller
     public function store(AdminWatchRequest $request)
     {
         //
+        $watchData = $request->all();
+        $watchData = $this->setBlankData($watchData);
         $watchCategories = $request->categories;
-        if($request->discount_price == ""){
-            $watchData = $request->except(['discount_price', 'categories']);
-        }else{
-            $watchData = $request->except('categories');
-        }
+
+
         $watch = Watch::create($watchData);
-        if(count($watchCategories) > 0){
+        if($watchCategories){
             $watch->categories()->sync($watchCategories);
         }
 
@@ -81,7 +80,6 @@ class AdminWatchController extends Controller
     {
         //
         $watch = Watch::findOrFail($id);
-        $price = $watch->price;
         $brands = Brand::pluck('name', 'id');
         $categories = Category::all();
         return view('admin.watch.edit', compact('watch', 'brands', 'categories'));
@@ -100,18 +98,16 @@ class AdminWatchController extends Controller
         $watch = Watch::findOrFail($id);
 
         $watchCategories = $request->categories;
-        if($watch->categories()->count() > 0){
-            $oldCategories = $watch->categories()->get()->pluck('id');
-            if($oldCategories != $watchCategories){
-                $watch->categories()->sync($watchCategories);
-            }
+        if($watchCategories){
+            $watch->categories()->sync($watchCategories);
+        }else{
+            $watch->categories()->detach();
         }
 
-        if ($request->discount_price == "") {
-            $watchData = $request->except(['discount_price', 'categories']);
-        } else {
-            $watchData = $request->except('categories');
-        }
+        $watchData = $request->all();
+
+        $watchData = $this->setBlankData($watchData);
+
 
         $watch->update($watchData);
 
@@ -129,5 +125,14 @@ class AdminWatchController extends Controller
         //
         $watch = Watch::destroy($id);
         return Response::json($watch);
+    }
+
+    private function setBlankData($data){
+        foreach ($data as $key=>$value){
+            if('' == $value ){
+                $data[$key] = null;
+            }
+        }
+        return $data;
     }
 }

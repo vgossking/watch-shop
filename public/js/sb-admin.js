@@ -1,7 +1,7 @@
 $(function() {
 
     $('#side-menu').metisMenu();
-
+    $(".megamenu").megamenu();
 });
 
 //Loads the correct sidebar on window load,

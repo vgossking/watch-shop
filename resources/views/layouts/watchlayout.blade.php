@@ -25,9 +25,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- start menu -->
     <script type="text/javascript" src="{{asset('js/megamenu.js')}}"></script>
-    <script>$(document).ready(function () {
-            $(".megamenu").megamenu();
-        });</script>
     <script src="{{asset('js/jquery.easydropdown.js')}}"></script>
     <script src="{{asset('js/simpleCart.min.js')}}"></script>
     <title>{{ config('app.name', 'Laravel') }}</title>
