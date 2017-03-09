@@ -120,10 +120,24 @@ class AdminWatchController extends Controller
         return Response::json($watch);
     }
 
+
+    /**
+     * Handle the request of store and update
+     *
+     * @param  AdminWatchRequest $request
+     * @return array
+     */
+
     private function handleRequest(AdminWatchRequest $request){
         return $this->setBlankData($request->all());
     }
 
+    /*
+     * Set Blank data from request to null
+     * param array $data
+     * return array $data
+     *
+     */
     private function setBlankData($data){
         foreach ($data as $key=>$value){
             if('' == $value ){

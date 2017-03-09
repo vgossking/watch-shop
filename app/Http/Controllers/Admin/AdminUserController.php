@@ -103,6 +103,13 @@ class AdminUserController extends Controller
         return Response::json($user);
     }
 
+    /**
+     * Handle the request of store and update
+     *
+     * @param  AdminUserRequest $request
+     * @return array
+     */
+
     private function handleRequest(AdminUserRequest $request){
         $userRequest = $request->all();
         $userRequest['password'] = bcrypt($userRequest['password']);
