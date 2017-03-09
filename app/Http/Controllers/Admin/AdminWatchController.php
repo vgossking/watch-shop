@@ -8,6 +8,7 @@ use App\Http\Requests\AdminWatchRequest;
 use App\Watch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class AdminWatchController extends Controller
 {
@@ -52,7 +53,10 @@ class AdminWatchController extends Controller
             $watchData = $request->except('categories');
         }
         $watch = Watch::create($watchData);
-        $watch->categories()->sync($watchCategories);
+        if(count($watchCategories) > 0){
+            $watch->categories()->sync($watchCategories);
+        }
+
         return redirect(route('watches.index'));
     }
 
@@ -123,5 +127,7 @@ class AdminWatchController extends Controller
     public function destroy($id)
     {
         //
+        $watch = Watch::destroy($id);
+        return Response::json($watch);
     }
 }

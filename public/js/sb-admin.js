@@ -23,9 +23,9 @@ $(function () {
         deleteAjax('user', id);
     });
 
-    $(document).on('click', '.btn-post-delete', function () {
-        var id = $(this).closest('tr').find('.post-id').html();
-        deleteAjax('post', id);
+    $(document).on('click', '.btn-watch-delete', function () {
+        var id = $(this).closest('tr').find('.watch-id').html();
+        deleteAjax('watch', id);
     });
 
     function deleteAjax(typeDelete, id){
@@ -38,9 +38,16 @@ $(function () {
             }
 
         });
+        var url;
+        if(typeDelete == 'watch'){
+            url = typeDelete +'es/'+id;
+        }
+        else{
+            url = typeDelete +'s/'+id;
+        }
         $.ajax({
             type: "DELETE",
-            url: typeDelete +'s/'+id,
+            url: url,
             success: function (data) {
                 $("#"+typeDelete+"-"+id).remove();
             },

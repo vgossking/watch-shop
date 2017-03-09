@@ -68,7 +68,7 @@
                 @endforeach
             </div>
 
-            {!! Form::submit('Add User', ['class'=>'btn btn-success clear-both mg-lft-30']) !!}
+            {!! Form::submit('Edit Watch', ['class'=>'btn btn-success clear-both mg-lft-30']) !!}
 
 
             {!! Form::close() !!}

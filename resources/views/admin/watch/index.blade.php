@@ -43,7 +43,7 @@
 
                 <td><a href="{{url(route('watches.edit', $watch->id))}}" class="btn btn-primary">Update</a></td>
                 <td>
-                    <button class="btn btn-danger btn-delete">Delete</button>
+                    <button class="btn btn-danger btn-watch-delete">Delete</button>
                 </td>
             </tr>
         @endforeach
