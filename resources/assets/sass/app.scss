@@ -55,17 +55,23 @@
   padding: 15px;
 }
 
-.tbl-cel{
-  max-width: 150px;
-  max-height: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis ;
-}
-
 .clear-both{
   clear:both;
 }
 
 .padding-lft-30{
   padding-left: 30px;
+}
+
+.register-top-link{
+  text-transform: uppercase;
+  padding: 5px;
+  a{
+    color: #fff;
+    font-size: 12px;
+  }
+  a:hover{
+    text-decoration: none;
+    color:#fb5c22;
+  }
 }

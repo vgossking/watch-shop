@@ -60,27 +60,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="clearfix"></div>
                             </div>
                             <div class="header_top_right">
-                                <div class="lang_list">
-                                    <select tabindex="4" class="dropdown">
-                                        <option value="" class="label" value="">$ Us</option>
-                                        <option value="1">Dollar</option>
-                                        <option value="2">Euro</option>
-                                    </select>
+                                <div class="lang_list register-top-link">
+                                    @if(Auth::check())
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out fa-fw"> </i>
+                                            Log Out
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </a>
+                                    @else
+                                        <a href="{{url(route('register'))}}">Register</a>
+                                    @endif
+
                                 </div>
                                 <ul class="header_user_info">
                                     @if(Auth::check())
                                         <a class="login" href="">
                                             <i class="user"> </i>
-                                            <li class="user_desc">{{Auth::user()->first_name}}</li>
-                                            <li class="user_desc"><a href="{{ route('logout') }}"
-                                                                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                    <i class="fa fa-sign-out fa-fw"> </i>
-                                                    Log Out
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        {{ csrf_field() }}
-                                                    </form>
-                                                </a></li>
+                                            <li class="user_desc">Hi, {{Auth::user()->getFullName()}}</li>
                                         </a>
                                         <div class="clearfix"></div>
                                         @else
