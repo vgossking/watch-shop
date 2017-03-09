@@ -28,7 +28,7 @@
                 <td>{{$watch->name}}</td>
                 <td>{{$watch->quantity? $watch->quantity : 'No Information'}}</td>
                 <td>{{$watch->price? $watch->price : 'No Information'}}</td>
-                <td>{{$watch->discount_price? $watch->discount_price : 'Not Discount'}}</td>
+                <td>{{$watch->discount_price? $watch->discount_price : 'Not Discount' }}</td>
                 <td>
                     @foreach($watch->categories as $category)
                         {{$category->name}},
@@ -47,6 +47,7 @@
     @else
     <div class="alert alert-info clear-both">No watch found</div>
     @endif
+
 @endsection
 
 

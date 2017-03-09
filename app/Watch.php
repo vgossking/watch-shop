@@ -30,16 +30,16 @@ class Watch extends Model
         return $this->belongsTo('App\Brand');
     }
 
-    public function getShapeAttribute($shape){
-        return ucfirst($shape);
+
+    public function getPriceAttribute($price){
+        return '$'.$price;
     }
 
-    public function getBezelMaterialAttribute($material){
-        return ucfirst($material);
-    }
-
-    public function getBandMaterialAttribute($material){
-        return ucfirst($material);
+    public function getDiscountPriceAttribute($price){
+        if ($price){
+            return '$' . $price;
+        }
+        return $price;
     }
 
     public function categories(){

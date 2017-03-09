@@ -41,12 +41,12 @@
 
                 <div class="form-group col-md-6">
                     {!!  Form::label('price', 'Price: ') !!}
-                    {!!  Form::number('price', null, ['class' => 'form-control']) !!}
+                    {!!  Form::number('price', null, ['class' => 'form-control', 'step'=>'any']) !!}
                 </div>
 
                 <div class="form-group col-md-6">
                     {!!  Form::label('discount_price', 'Discount Price: ') !!}
-                    {!!  Form::number('discount_price', null, ['class' => 'form-control']) !!}
+                    {!!  Form::number('discount_price', null, ['class' => 'form-control','step'=>'any']) !!}
                 </div>
 
                 <div class="form-group col-md-6">
@@ -56,7 +56,8 @@
 
             </div>
             <h3 class="mg-lft-30">Categories: </h3>
-            @foreach($categories as $category)
+            <div class="category-checkbox">
+                @foreach($categories as $category)
 
                     <label class="checkbox-inline mg-lft-30 mg-btm-20">
                         {!! Form::checkbox('categories[]', $category->id ) !!}
@@ -64,8 +65,9 @@
                     </label>
 
 
-            @endforeach
-            <br>
+                @endforeach
+            </div>
+
             {!! Form::submit('Add User', ['class'=>'btn btn-success clear-both mg-lft-30']) !!}
 
 
