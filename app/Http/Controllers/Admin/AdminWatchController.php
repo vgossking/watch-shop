@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Brand;
 use App\Category;
+use App\Http\Requests\AdminWatchRequest;
 use App\Watch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,7 +42,7 @@ class AdminWatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminWatchRequest $request)
     {
         //
         $watchCategories = $request->categories;
@@ -84,7 +85,7 @@ class AdminWatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminWatchRequest $request, $id)
     {
         //
     }
