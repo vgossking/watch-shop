@@ -24,7 +24,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- start menu -->
-    <script type="text/javascript" src="{{asset('js/megamenu.js')}}"></script>
+
+
     <script src="{{asset('js/jquery.easydropdown.js')}}"></script>
     <script src="{{asset('js/simpleCart.min.js')}}"></script>
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -304,6 +305,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script src="/js/app.js"></script>
         <script src="{{asset('js/classie1.js') }}"></script>
         <script src="{{asset('js/uisearch.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/megamenu.js')}}"></script>
+        <script>
+
+            $(document).ready(function () {
+                var megaMenu = $('.megamenu');
+                megaMenu.megamenu();
+            });
+        </script>
         <script>
             new UISearch(document.getElementById('sb-search'));
         </script>
