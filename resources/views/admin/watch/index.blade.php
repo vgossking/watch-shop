@@ -26,9 +26,9 @@
                 <td class="watch-id">{{$watch->id}}</td>
                 <td>{{$watch->brand ? $watch->brand->name : ' No brand'}}</td>
                 <td>{{$watch->name}}</td>
-                <td>{{$watch->quantity? $watch->quantity : 'No Information'}}</td>
+                <td>{{$watch->quantity !== null? $watch->quantity : 'no info'}}</td>
                 <td>{{$watch->price? $watch->price : 'No Information'}}</td>
-                <td>{{$watch->discount_price? $watch->discount_price : 'Not Discount' }}</td>
+                <td>{{$watch->discount_price!== null? $watch->discount_price : 'Not Discount' }}</td>
                 <td>
                     @foreach($watch->categories as $index => $category)
                         @if($index == count($watch->categories)-1)
