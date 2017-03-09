@@ -31,16 +31,6 @@ class Watch extends Model
     }
 
 
-    public function getPriceAttribute($price){
-        return '$'.$price;
-    }
-
-    public function getDiscountPriceAttribute($price){
-        if ($price){
-            return '$' . $price;
-        }
-        return $price;
-    }
 
     public function categories(){
         return $this->belongsToMany('App\Category','categories_watches');

@@ -76,6 +76,11 @@ class AdminWatchController extends Controller
     public function edit($id)
     {
         //
+        $watch = Watch::findOrFail($id);
+        $price = $watch->price;
+        $brands = Brand::pluck('name', 'id');
+        $categories = Category::all();
+        return view('admin.watch.edit', compact('watch', 'brands', 'categories'));
     }
 
     /**
@@ -88,6 +93,25 @@ class AdminWatchController extends Controller
     public function update(AdminWatchRequest $request, $id)
     {
         //
+        $watch = Watch::findOrFail($id);
+
+        $watchCategories = $request->categories;
+        if($watch->categories()->count() > 0){
+            $oldCategories = $watch->categories()->get()->pluck('id');
+            if($oldCategories != $watchCategories){
+                $watch->categories()->sync($watchCategories);
+            }
+        }
+
+        if ($request->discount_price == "") {
+            $watchData = $request->except(['discount_price', 'categories']);
+        } else {
+            $watchData = $request->except('categories');
+        }
+
+        $watch->update($watchData);
+
+        return redirect(route('watches.index'));
     }
 
     /**
