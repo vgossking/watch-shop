@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Brand;
 use App\Category;
 use App\Http\Requests\AdminWatchRequest;
+use App\Service\WatchService;
 use App\Watch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,13 @@ class AdminWatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $service;
+
+    public function __construct()
+    {
+        $this->service = WatchService::getInstance();
+    }
+
     public function index()
     {
         //
@@ -46,12 +54,8 @@ class AdminWatchController extends Controller
     public function store(AdminWatchRequest $request)
     {
         //
-        $watchData = $this->handleRequest($request);
-        $watchCategories = $request->categories;
-        $watch = Watch::create($watchData);
-        if($watchCategories){
-            $watch->categories()->sync($watchCategories);
-        }
+        $watch = $this->service->insert($request);
+        $this->service->syncCategory($watch, $request);
 
         return redirect(route('watches.index'));
     }
@@ -92,17 +96,10 @@ class AdminWatchController extends Controller
     public function update(AdminWatchRequest $request, $id)
     {
         //
-        $watch = Watch::findOrFail($id);
 
-        $watchCategories = $request->categories;
-        if($watchCategories){
-            $watch->categories()->sync($watchCategories);
-        }else{
-            $watch->categories()->detach();
-        }
+        $watch = $this->service->update($request,$id);
 
-        $watchData = $this->handleRequest($request);
-        $watch->update($watchData);
+        $this->service->syncCategory($watch, $request);
 
         return redirect(route('watches.index'));
     }
@@ -116,7 +113,7 @@ class AdminWatchController extends Controller
     public function destroy($id)
     {
         //
-        $watch = Watch::destroy($id);
+        $watch = $this->service->destroy($id);
         return Response::json($watch);
     }
 
