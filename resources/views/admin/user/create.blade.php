@@ -41,7 +41,7 @@
             </div>
 
 
-            {!! Form::submit('Add Watch', ['class'=>'btn btn-success']) !!}
+            {!! Form::submit('Add User', ['class'=>'btn btn-success']) !!}
 
 
             {!! Form::close() !!}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Brand;
 use App\Category;
+use App\Http\Controllers\AdminBaseController;
 use App\Http\Requests\AdminWatchRequest;
 use App\Service\WatchService;
 use App\Watch;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-class AdminWatchController extends Controller
+class AdminWatchController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -103,44 +104,5 @@ class AdminWatchController extends Controller
 
         return redirect(route('watches.index'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $watch = $this->service->destroy($id);
-        return Response::json($watch);
-    }
-
-
-    /**
-     * Handle the request of store and update
-     *
-     * @param  AdminWatchRequest $request
-     * @return array
-     */
-
-    private function handleRequest(AdminWatchRequest $request){
-        return $this->setBlankData($request->all());
-    }
-
-    /*
-     * Set Blank data from request to null
-     * param array $data
-     * return array $data
-     *
-     */
-    private function setBlankData($data){
-        foreach ($data as $key=>$value){
-            if('' == $value ){
-                $data[$key] = null;
-            }
-        }
-        return $data;
-    }
+    
 }
