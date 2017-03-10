@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use App\Service\UserService;
 
 class AdminUserController extends Controller
 {
@@ -16,10 +17,16 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $service;
+    public function __construct()
+    {
+        $this->service = UserService::getInstance();
+    }
+
     public function index()
     {
         //
-        $users = User::all();
+        $users = $this->service->getAll();
         return view('admin.user.index', compact('users'));
     }
 
@@ -44,8 +51,7 @@ class AdminUserController extends Controller
     public function store(AdminUserRequest $request)
     {
         //
-        $userData = $this->handleRequest($request);
-        User::create($userData);
+        $this->service->insert($request);
         return redirect(route('users.index'));
     }
 
@@ -84,9 +90,7 @@ class AdminUserController extends Controller
     public function update(AdminUserRequest $request, $id)
     {
         //
-        $userData = $this->handleRequest($request);
-        $user = User::findOrFail($id);
-        $user->update($userData);
+        $this->service->update($request, $id);
         return redirect(route('users.index'));
     }
 
@@ -99,23 +103,9 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
-        $user = User::destroy($id);
+        $user = $this->service->destroy($id);
         return Response::json($user);
     }
 
-    /**
-     * Handle the request of store and update
-     *
-     * @param  AdminUserRequest $request
-     * @return array
-     */
 
-    private function handleRequest(AdminUserRequest $request){
-        $userRequest = $request->all();
-        $userRequest['password'] = bcrypt($userRequest['password']);
-        if($userRequest['password'] == ''){
-            $userRequest = $request->except('password');
-        }
-        return $userRequest;
-    }
 }
