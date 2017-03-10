@@ -104,5 +104,5 @@ class AdminWatchController extends AdminBaseController
 
         return redirect(route('watches.index'));
     }
-    
+
 }

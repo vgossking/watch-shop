@@ -6,11 +6,11 @@ use App\Http\Requests\AdminUserRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 use Illuminate\Support\Facades\Response;
 use App\Service\UserService;
 
-class AdminUserController extends Controller
+class AdminUserController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
