@@ -29,12 +29,6 @@ class UserService extends BaseService
         $dao::create($userData);
     }
 
-    public function getAll(){
-        $dao = $this->dao;
-        $users = $dao::paginate(15);
-        return $users;
-    }
-
     public function update(AdminUserRequest $userRequest, $id){
         $dao = $this->dao;
         $user = $dao::findOrFail($id);

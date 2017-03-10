@@ -26,7 +26,7 @@ class AdminUserController extends AdminBaseController
     public function index()
     {
         //
-        $users = $this->service->getAll();
+        $users = $this->service->getAllPaginate(12);
         return view('admin.user.index', compact('users'));
     }
 
