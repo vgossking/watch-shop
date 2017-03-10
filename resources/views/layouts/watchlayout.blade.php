@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 </head>
 <body>
-<div id="app">
+    <div id="app">
     @if(Request::is('home') || Request::is('/'))
         <div class="banner">
             @else
@@ -316,6 +316,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script>
             new UISearch(document.getElementById('sb-search'));
         </script>
-        </div>
+    </div>
 </body>
 </html>
