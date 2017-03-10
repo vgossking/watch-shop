@@ -41,8 +41,8 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        $admin_role_id = 1;
-        if($this->role_id == $admin_role_id){
+
+        if($this->role_id == Role::ROLE_ADMIN){
             return true;
         }
         return false;

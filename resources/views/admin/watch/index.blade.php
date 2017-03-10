@@ -30,8 +30,8 @@
                 <td>{{$watch->price? $watch->price : 'No Information'}}</td>
                 <td>{{$watch->discount_price!== null? $watch->discount_price : 'Not Discount' }}</td>
                 <td>
-                    @foreach($watch->categories as $index => $category)
-                        @if($index == count($watch->categories)-1)
+                    @foreach($watch->categories as $category)
+                        @if($loop->last)
                             {{$category->name}}
                         @else
                             {{$category->name}},
