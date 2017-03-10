@@ -24,17 +24,20 @@ class UserService extends BaseService
     }
 
     public function insert(AdminUserRequest $userRequest){
+        $dao = $this->dao;
         $userData = $this->handleRequest($userRequest);
-        User::create($userData);
+        $dao::create($userData);
     }
 
     public function getAll(){
-        $users = User::all();
+        $dao = $this->dao;
+        $users = $dao::all();
         return $users;
     }
 
     public function update(AdminUserRequest $userRequest, $id){
-        $user = User::findOrFail($id);
+        $dao = $this->dao;
+        $user = $dao::findOrFail($id);
         $userData = $this->handleRequest($userRequest);
         $user->update($userData);
     }
