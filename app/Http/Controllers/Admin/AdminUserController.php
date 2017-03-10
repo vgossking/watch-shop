@@ -17,7 +17,7 @@ class AdminUserController extends AdminBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public $service;
+    protected $service;
     public function __construct()
     {
         $this->service = UserService::getInstance();

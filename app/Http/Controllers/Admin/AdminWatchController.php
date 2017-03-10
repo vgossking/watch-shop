@@ -19,7 +19,7 @@ class AdminWatchController extends AdminBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public $service;
+    protected $service;
 
     public function __construct()
     {
