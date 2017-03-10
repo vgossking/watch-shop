@@ -49,6 +49,7 @@
         @endforeach
         </tbody>
     </table>
+    {{ $watches->links() }}
     @else
     <div class="alert alert-info clear-both">No watch found</div>
     @endif

@@ -10,6 +10,11 @@ class BaseService
 {
     protected $dao;
 
+    public function getAllPaginate($itemPerPage = 15){
+        $dao = $this->dao;
+        return $dao::paginate($itemPerPage);
+    }
+
     public function destroy($id){
         $dao = $this->dao;
         return $dao::destroy($id);

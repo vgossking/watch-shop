@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::table('watches')->insert([
+        /*DB::table('watches')->insert([
             'name' => 'FAF05001W0',
             'shape' => 'round',
             'size' => 40,
@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('brands')->insert([
             'name' => 'tissot'
-        ]);
+        ]);*/
+
+        factory(App\Watch::class, 500)->create();
     }
 }

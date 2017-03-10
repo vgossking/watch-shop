@@ -31,7 +31,7 @@ class UserService extends BaseService
 
     public function getAll(){
         $dao = $this->dao;
-        $users = $dao::all();
+        $users = $dao::paginate(15);
         return $users;
     }
 

@@ -29,7 +29,7 @@ class AdminWatchController extends AdminBaseController
     public function index()
     {
         //
-        $watches = Watch::all();
+        $watches = $this->service->getAllPaginate(12);
         return view('admin.watch.index', compact('watches'));
     }
 
