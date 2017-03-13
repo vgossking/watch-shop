@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        /*DB::table('watches')->insert([
+       /* DB::table('watches')->insert([
             'name' => 'FAF05001W0',
             'shape' => 'round',
             'size' => 40,
@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'quantity' => 20,
             'price' => 120.5,
             'brand_id' => 1
-        ]);
+        ]);*/
 
         DB::table('users')->insert([
             'first_name' => 'Vũ',
@@ -42,14 +42,36 @@ class DatabaseSeeder extends Seeder
             'name' => 'vip'
         ]);
 
-        DB::table('brands')->insert([
-            'name' => 'orient'
+        DB::table('categories')->insert([
+            'name' => 'Men'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Women'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Sport'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Elegant'
         ]);
 
         DB::table('brands')->insert([
-            'name' => 'tissot'
-        ]);*/
+            'name' => 'orient',
+            'parent_id' => 0
+        ]);
 
-        factory(App\Watch::class, 500)->create();
+        DB::table('brands')->insert([
+            'name' => 'tissot',
+            'parent_id' => 0
+        ]);
+
+        $watches = factory(App\Watch::class, 500)->create()->each(function ($u) {
+            $u->categories()->attach([1, 3]);
+        });;
+        factory(App\User::class, 500)->create();
+        factory(App\Brand::class, 20)->create();
     }
 }

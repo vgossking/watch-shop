@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('history')->nullable();
+            $table->integer('parent_id')->unsigned()->index();
             $table->timestamps();
         });
     }

@@ -18,4 +18,12 @@ class Brand extends Model
     public function getNameAttribute($name){
         return ucfirst($name);
     }
+
+    public function parent(){
+        return $this->belongsTo('App\Brand', 'parent_id');
+    }
+
+    public function children(){
+        return $this->hasMany('App\Brand', 'parent_id');
+    }
 }

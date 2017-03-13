@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     @if(Auth::check())
                                         <a class="login" href="">
                                             <i class="user"> </i>
-                                            <li class="user_desc">Hi, {{Auth::user()->getFullName()}}</li>
+                                            <li class="user_desc">Hi, {{Auth::user()->first_name}}</li>
                                         </a>
                                         <div class="clearfix"></div>
                                         @else
