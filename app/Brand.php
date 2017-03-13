@@ -26,4 +26,8 @@ class Brand extends Model
     public function children(){
         return $this->hasMany('App\Brand', 'parent_id');
     }
+
+    public function scopeRoot($query){
+        return $query->where('parent_id', 0);
+    }
 }

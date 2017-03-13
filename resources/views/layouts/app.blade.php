@@ -120,13 +120,13 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Categories<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Brands<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">All Categories</a>
+                                <a href="#">All Brands </a>
                             </li>
                             <li>
-                                <a href="buttons.html">Add Category</a>
+                                <a href="buttons.html">Add Brand</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
