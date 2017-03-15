@@ -21,7 +21,7 @@ class AdminUserController extends AdminBaseController
     protected $service;
     public function __construct(FactoryService $serviceFactory)
     {
-        $service = $serviceFactory->getUserService();
+        $service = $serviceFactory->getService('user');
         $this->service = $service;
     }
 

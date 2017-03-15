@@ -12,11 +12,13 @@ namespace App\Service;
 
 class FactoryService
 {
-    public function getUserService(){
-        return new UserService();
-    }
 
-    public function getWatchService(){
-        return new WatchService();
+    public function getService($type){
+        switch ($type){
+            case 'user' :
+                return new UserService();
+            case 'watch' :
+                return new WatchService();
+        }
     }
 }

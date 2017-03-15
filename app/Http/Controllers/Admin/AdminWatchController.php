@@ -21,7 +21,7 @@ class AdminWatchController extends AdminBaseController
 
     public function __construct(FactoryService $factoryService)
     {
-        $service = $factoryService->getWatchService();
+        $service = $factoryService->getService('watch');
         $this->service = $service;
     }
 
