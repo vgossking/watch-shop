@@ -12,27 +12,19 @@ namespace App\Service;
 use App\Http\Requests\AdminWatchRequest;
 use App\Watch;
 
-class WatchService extends BaseService
+class WatchService extends BaseService implements Service
 {
-    private static $instance;
 
     protected $dao = 'App\Watch';
 
-    public static function getInstance(){
-        $instance = self::$instance;
-        if(!$instance){
-            $instance = new WatchService();
-        }
-        return $instance;
-    }
 
-    public function insert(AdminWatchRequest $request){
+    public function insert($request){
         $instance = $this->dao;
         $watchData = $this->handleRequest($request);
         return $instance::create($watchData);
     }
 
-    public function update(AdminWatchRequest $request, $id){
+    public function update($request, $id){
         $watchDao = $this->dao;
         $watch = $watchDao::findOrFail($id);
         $watchData = $this->handleRequest($request);
@@ -49,7 +41,7 @@ class WatchService extends BaseService
         }
     }
 
-    private function handleRequest(AdminWatchRequest $request){
+    public function handleRequest($request){
         return $this->setBlankData($request->all());
     }
 

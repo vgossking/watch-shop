@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AdminUserRequest;
 use App\Role;
+use App\Service\FactoryService;
+use App\Service\ServiceFactory;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminBaseController;
-use Illuminate\Support\Facades\Response;
-use App\Service\UserService;
+
 
 class AdminUserController extends AdminBaseController
 {
@@ -18,9 +19,10 @@ class AdminUserController extends AdminBaseController
      * @return \Illuminate\Http\Response
      */
     protected $service;
-    public function __construct()
+    public function __construct(FactoryService $serviceFactory)
     {
-        $this->service = UserService::getInstance();
+        $service = $serviceFactory->getUserService();
+        $this->service = $service;
     }
 
     public function index()

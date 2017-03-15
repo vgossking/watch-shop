@@ -9,27 +9,20 @@ namespace App\Service;
 use App\User;
 use App\Http\Requests\AdminUserRequest;
 
-class UserService extends BaseService
+class UserService extends BaseService implements Service
 {
-    private static $instance;
 
     protected $dao = 'App\User';
 
-    public static function getInstance(){
-        $instance = self::$instance;
-        if(!$instance){
-            $instance = new UserService();
-        }
-        return $instance;
-    }
 
-    public function insert(AdminUserRequest $userRequest){
+
+    public function insert($userRequest){
         $dao = $this->dao;
         $userData = $this->handleRequest($userRequest);
         $dao::create($userData);
     }
 
-    public function update(AdminUserRequest $userRequest, $id){
+    public function update($userRequest, $id){
         $dao = $this->dao;
         $user = $dao::findOrFail($id);
         $userData = $this->handleRequest($userRequest);
@@ -41,7 +34,7 @@ class UserService extends BaseService
      * @param  AdminUserRequest $request
      * @return array
      */
-    public function handleRequest(AdminUserRequest $userRequest){
+    public function handleRequest($userRequest){
         $userData = $userRequest->all();
         $userData['password'] = bcrypt($userData['password']);
         if($userData['password'] == ''){

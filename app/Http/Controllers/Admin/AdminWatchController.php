@@ -6,11 +6,9 @@ use App\Brand;
 use App\Category;
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Requests\AdminWatchRequest;
-use App\Service\WatchService;
+use App\Service\FactoryService;
 use App\Watch;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
+
 
 class AdminWatchController extends AdminBaseController
 {
@@ -21,9 +19,10 @@ class AdminWatchController extends AdminBaseController
      */
     protected $service;
 
-    public function __construct()
+    public function __construct(FactoryService $factoryService)
     {
-        $this->service = WatchService::getInstance();
+        $service = $factoryService->getWatchService();
+        $this->service = $service;
     }
 
     public function index()
