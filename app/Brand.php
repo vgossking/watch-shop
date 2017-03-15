@@ -34,4 +34,17 @@ class Brand extends Model
     public function hasChildren(){
         return $this->children()->count() > 0;
     }
+
+    public function countProducts(){
+        $product = 0;
+        if($this->hasChildren()){
+            foreach ($this->children as $child){
+                $product += $child->watches()->count();
+            }
+        }
+
+        $product += $this->watches()->count();
+
+        return $product;
+    }
 }

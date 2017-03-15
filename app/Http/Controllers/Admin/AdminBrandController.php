@@ -18,7 +18,7 @@ class AdminBrandController extends AdminBaseController
     {
         //
         $brands = Brand::root();
-        return view('admin.watch.index', compact('brands'));
+        return view('admin.brand.index', compact('brands'));
     }
 
     /**
