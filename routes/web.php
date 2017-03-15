@@ -29,4 +29,6 @@ Route::group(['middleware'=>'admin'], function (){
     Route::resource('/admin/users', 'Admin\AdminUserController');
 
     Route::resource('/admin/watches', 'Admin\AdminWatchController');
+
+    Route::resource('/admin/brands', 'Admin\AdminBrandController');
 });
