@@ -62,7 +62,6 @@ class LoginController extends Controller
 
     public function authenticated(Request $request,$user)
     {
-        $input = $request->all();
         if($user->isAdmin()){
             return redirect($this->redirectTo);
         }
