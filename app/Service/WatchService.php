@@ -60,7 +60,7 @@ class WatchService extends BaseService implements Service
         foreach ($brands as $brand){
             $brandWithNameId[$brand->id] = $brand->name;
             $childBrands = [];
-            if($brand->children){
+            if($brand->hasChildren()){
                 foreach ($brand->children as $child){
                     $childBrands[$child->id] = $child->name;
                     $brandWithNameId[$brand->name." : "] = $childBrands;
