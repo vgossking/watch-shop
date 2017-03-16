@@ -39,6 +39,6 @@ $factory->define(App\Brand::class, function (Faker\Generator $faker)
 {
     return [
         'name'      => $faker->company,
-        'parent_id' => $faker->numberBetween(0, 9)
+        'parent_id' => $faker->numberBetween(1, 4)
     ];
 });

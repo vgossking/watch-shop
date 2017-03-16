@@ -15,7 +15,7 @@
 
                 <div class="form-group col-md-6">
                     {!!  Form::label('brand_id', 'Brand: ') !!}
-                    {!!  Form::select('brand_id', $brands, null, ['class'=>'form-control']) !!}
+                    {!!  Form::select('brand_id', $brandWithNameId, null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group col-md-6">

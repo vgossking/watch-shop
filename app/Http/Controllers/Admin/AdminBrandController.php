@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
+use App\Service\FactoryService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Brand;
@@ -14,11 +15,20 @@ class AdminBrandController extends AdminBaseController
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $service;
+
+    public function __construct()
+    {
+        $this->service = FactoryService::getBrandService();
+    }
+
     public function index()
     {
         //
         $brands = Brand::root();
-        return view('admin.brand.index', compact('brands'));
+        $service = $this->service;
+        return view('admin.brand.index', compact('brands', 'service'));
     }
 
     /**

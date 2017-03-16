@@ -11,6 +11,7 @@ namespace App\Service;
 
 use App\Http\Requests\AdminWatchRequest;
 use App\Watch;
+use App\Brand;
 
 class WatchService extends BaseService implements Service
 {
@@ -54,4 +55,18 @@ class WatchService extends BaseService implements Service
         return $watchData;
     }
 
+    public function showBrandWithChild(){
+        $brands = Brand::root()->get();
+        foreach ($brands as $brand){
+            $brandWithNameId[$brand->id] = $brand->name;
+            $childBrands = [];
+            if($brand->children){
+                foreach ($brand->children as $child){
+                    $childBrands[$child->id] = $child->name;
+                    $brandWithNameId[$brand->name." : "] = $childBrands;
+                }
+            }
+        }
+        return $brandWithNameId;
+    }
 }

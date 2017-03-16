@@ -19,9 +19,9 @@ class AdminWatchController extends AdminBaseController
      */
     protected $service;
 
-    public function __construct(FactoryService $factoryService)
+    public function __construct()
     {
-        $service = $factoryService->getService('watch');
+        $service = FactoryService::getWatchService();
         $this->service = $service;
     }
 
@@ -39,10 +39,9 @@ class AdminWatchController extends AdminBaseController
      */
     public function create()
     {
-        //
-        $brands = Brand::pluck('name', 'id');
+        $brandWithNameId = $this->service->showBrandWithChild();
         $categories = Category::all();
-        return view('admin.watch.create', compact('brands', 'categories'));
+        return view('admin.watch.create', compact('brandWithNameId', 'categories'));
     }
 
     /**
@@ -81,7 +80,7 @@ class AdminWatchController extends AdminBaseController
     {
         //
         $watch = Watch::findOrFail($id);
-        $brands = Brand::pluck('name', 'id');
+        $brands = $this->service->showBrandWithChild();
         $categories = Category::all();
         return view('admin.watch.edit', compact('watch', 'brands', 'categories'));
     }

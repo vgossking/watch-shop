@@ -22,7 +22,7 @@
                     <td class="brand-id">{{$brand->id}}</td>
                     <td>{{$brand->name}}</td>
                     <td>{{$brand->history !== null? $brand->history : 'No Info'}}</td>
-                    <td>{{$brand->countProducts() }}</td>
+                    <td>{{$service->countProducts($brand) }}</td>
 
                 </tr>
             @endforeach

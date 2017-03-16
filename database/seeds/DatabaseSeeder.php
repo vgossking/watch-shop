@@ -68,6 +68,21 @@ class DatabaseSeeder extends Seeder
             'parent_id' => 0
         ]);
 
+        DB::table('brands')->insert([
+            'name' => 'cadino',
+            'parent_id' => 0
+        ]);
+
+        DB::table('brands')->insert([
+            'name' => 'rolex',
+            'parent_id' => 0
+        ]);
+
+        DB::table('brands')->insert([
+            'name' => 'roamer',
+            'parent_id' => 0
+        ]);
+
         $watches = factory(App\Watch::class, 500)->create()->each(function ($u) {
             $u->categories()->attach([1, 3]);
         });;

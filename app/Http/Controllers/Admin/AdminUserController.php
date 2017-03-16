@@ -19,9 +19,9 @@ class AdminUserController extends AdminBaseController
      * @return \Illuminate\Http\Response
      */
     protected $service;
-    public function __construct(FactoryService $serviceFactory)
+    public function __construct()
     {
-        $service = $serviceFactory->getService('user');
+        $service = FactoryService::getUserService();
         $this->service = $service;
     }
 
