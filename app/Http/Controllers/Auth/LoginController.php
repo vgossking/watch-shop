@@ -43,6 +43,11 @@ class LoginController extends Controller
         if($currentUser->isAdmin() && $currentUser->is_active){
             return '/admin';
         }
-        return '/home';
+        return '/';
+
+    }
+
+    protected function credentials(Request $request){
+        return array_merge($request->only($this->username(), 'password'), ['is_active' => 1]);
     }
 }
