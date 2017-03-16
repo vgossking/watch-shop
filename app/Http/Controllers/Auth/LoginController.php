@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -37,15 +37,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
-    }
-
-    public function redirectTo(){
-        $currentUser = Auth::user();
-        if($currentUser->isAdmin() && $currentUser->is_active){
-            return '/admin';
-        }
-        return '/';
-
+        $this->putPreviousUrlSession();
     }
 
     protected function credentials(Request $request){
@@ -59,5 +51,21 @@ class LoginController extends Controller
             ->withErrors([
                 'password' => 'Wrong username or password or account is locked',
             ]);
+    }
+
+    public function putPreviousUrlSession(){
+        if(!session()->has('from')){
+            session()->put('from', url()->previous());
+        }
+    }
+
+
+    public function authenticated(Request $request,$user)
+    {
+        $input = $request->all();
+        if($user->isAdmin()){
+            return redirect($this->redirectTo);
+        }
+        return redirect(session()->pull('from',$this->redirectTo));
     }
 }
