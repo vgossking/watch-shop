@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -49,5 +50,14 @@ class LoginController extends Controller
 
     protected function credentials(Request $request){
         return array_merge($request->only($this->username(), 'password'), ['is_active' => 1]);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors([
+                'password' => 'Wrong username or password or account is locked',
+            ]);
     }
 }
