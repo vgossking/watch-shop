@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminBaseController;
 use App\Service\FactoryService;
+use App\Service\ServiceContext;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Brand;
@@ -18,9 +19,10 @@ class AdminBrandController extends AdminBaseController
 
     protected $service;
 
-    public function __construct()
+    public function __construct(ServiceContext $service)
     {
-        $this->service = FactoryService::getBrandService();
+        $service->setService(FactoryService::getBrandService());
+        $this->service = $service;
     }
 
     public function index()

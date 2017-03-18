@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\AdminBaseController;
 use App\Http\Requests\AdminWatchRequest;
 use App\Service\FactoryService;
+use App\Service\ServiceContext;
 use App\Watch;
 
 
@@ -19,9 +20,9 @@ class AdminWatchController extends AdminBaseController
      */
     protected $service;
 
-    public function __construct()
+    public function __construct(ServiceContext $service)
     {
-        $service = FactoryService::getWatchService();
+        $service->setService(FactoryService::getWatchService());
         $this->service = $service;
     }
 

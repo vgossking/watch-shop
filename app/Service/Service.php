@@ -10,9 +10,13 @@ namespace App\Service;
 
 interface Service{
 
+    public function getAllPaginate($itemPerPage);
+
     public function insert($request);
 
     public function update($request, $id);
 
     public function handleRequest($request);
+
+    public function destroy($id);
 }

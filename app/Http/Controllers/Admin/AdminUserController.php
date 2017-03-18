@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\AdminUserRequest;
 use App\Role;
 use App\Service\FactoryService;
+use App\Service\ServiceContext;
 use App\Service\ServiceFactory;
 use App\User;
 use Illuminate\Http\Request;
@@ -19,9 +20,9 @@ class AdminUserController extends AdminBaseController
      * @return \Illuminate\Http\Response
      */
     protected $service;
-    public function __construct()
+    public function __construct(ServiceContext $service)
     {
-        $service = FactoryService::getUserService();
+        $service->setService(FactoryService::getUserService());
         $this->service = $service;
     }
 
@@ -93,7 +94,7 @@ class AdminUserController extends AdminBaseController
     {
         //
         $this->service->update($request, $id);
-        return redirect(route('users.index'));
+        return redirect()->intended(route('users.index'));
     }
 
 }
